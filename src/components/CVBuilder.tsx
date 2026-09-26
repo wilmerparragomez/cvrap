@@ -1079,6 +1079,10 @@ export default function CVBuilder() {
     index: number;
   } | null>(null);
 
+  useEffect(() => {
+    if (!isMobile) setShowPreviewModal(false);
+  }, [isMobile]);
+
   // Helper: Verificar si los datos están vacíos (sin contenido real del usuario)
   const isDataEmpty = (cvData: CVData): boolean => {
     const dp = cvData.datos_personales;
@@ -1616,7 +1620,7 @@ export default function CVBuilder() {
         </div>
       )}
 
-      {showPreviewModal && (
+      {isMobile && showPreviewModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 modal-backdrop">
           <div className="modal-card rounded-3xl shadow-2xl w-full max-w-4xl max-h-[calc(100vh-2rem)] sm:max-h-[90vh] overflow-visible flex flex-col">
             <div className="modal-header flex items-center justify-between px-4 py-3 border-b border-border">
@@ -1724,11 +1728,11 @@ export default function CVBuilder() {
 
       <header className="sticky top-0 z-50 border-b border-border/50 backdrop-blur-xl bg-white/95 dark:bg-[var(--card)]/95 supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-[var(--card)]/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-6">
             {/* Logo y Brand */}
             <div className="flex items-center gap-3">
               <img src="/cvrap-icon.svg" alt="CVrap" className="brand-mark" />
-              <div className="flex flex-col">
+              <div className="hidden flex-col sm:flex">
                 <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
                   <span>CVrap</span>
                 </h1>
@@ -1739,7 +1743,7 @@ export default function CVBuilder() {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex min-w-0 max-w-full flex-1 flex-wrap items-center justify-end gap-2 sm:gap-3">
               <LanguageMenu language={language} onChange={setLanguage} />
 
               {/* Theme Toggle */}
@@ -2747,10 +2751,6 @@ export default function CVBuilder() {
                 DevsParra <span aria-hidden="true">↗</span>
               </a>
             </div>
-          </div>
-          <div className="site-footer-bottom">
-            <span>{tr("footerCopyright")}</span>
-            <span className="site-footer-status"><span aria-hidden="true">●</span> CVrap online</span>
           </div>
         </div>
       </footer>

@@ -499,11 +499,11 @@ header select {
      - center the preview panel */
   .preview-panel {
     padding: 0.8rem 0.75rem;
-    width: auto;
-    max-width: calc(100vw - 1.25rem);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
     max-height: calc(100vh - 7rem);
-    justify-content: flex-start;
-    align-items: flex-start;
     border-radius: 1.5rem;
     margin: 0 auto;
   }
@@ -512,12 +512,12 @@ header select {
     width: fit-content;
     gap: 0.75rem;
     justify-items: center;
+    margin-inline: auto;
+    zoom: 0.4;
   }
 
   .cv-paper {
     margin: 0 auto 16px;
-    transform: scale(0.8);
-    transform-origin: top center;
   }
 
   .modal-body {
@@ -526,6 +526,18 @@ header select {
 
   .modal-footer {
     padding: 0.75rem 1rem 0.9rem;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 499px) {
+  .cv-pages {
+    zoom: 0.46;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+  .cv-pages {
+    zoom: 0.58;
   }
 }
 
